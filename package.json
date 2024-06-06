@@ -1,0 +1,23 @@
+{
+  "name": "makulay",
+  "version": "1.0.0",
+  "description": "A Nodejs project for inputting, storing, and displaying colors that users would like to remember.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/server.js",
+    "dev": "nodemon ./server/server.js",
+    "tailwind": "tailwind -i ./src/input.css -o ./public/styles/tailwind.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.19.2",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7",
+    "tailwindcss": "^3.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  }
+}
