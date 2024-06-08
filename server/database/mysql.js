@@ -9,7 +9,7 @@ const conn = mysql.createConnection({
 
 conn.connect((err) => {
     if(err) {
-        console.log(err);
+        throw err;
     }
 
     conn.query("CREATE DATABASE IF NOT EXISTS makulay_db;", (err) => {
