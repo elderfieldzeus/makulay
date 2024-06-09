@@ -1,7 +1,7 @@
 const conn = require("../database/mysql");
-const path = require("path");
+const bcrypt = require("bcryptjs");
 
-exports.signupFunction = (req, res) => {
+exports.signupFunction = async (req, res) => {
     const {name, email, password, cpassword} = req.body;
     
     if(!name || !email || !password || !cpassword) {
@@ -15,7 +15,7 @@ exports.signupFunction = (req, res) => {
     }
 
     // check if not yet in db
-    conn.query(`SELECT * FROM accounts WHERE email='${email}';`, (err, result) => {
+    conn.query(`SELECT * FROM accounts WHERE email='${email}';`, async (err, result) => {
         if(err) throw err;
 
         if(result.length > 0) {
@@ -23,7 +23,8 @@ exports.signupFunction = (req, res) => {
             return res.status(500).json({success: false, message: "Email already exists." });  
         } 
 
-        conn.query(`INSERT INTO accounts (name, email, password) VALUES ('${name}', '${email}', ${password});`, (err) => {
+        const hash = await bcrypt.hash(password, 10);
+        conn.query(`INSERT INTO accounts (name, email, password) VALUES (?, ?, ?);`, [name, email, hash], (err) => {
             if(err) throw err;
             return res.status(200).json({success: true, message: "Registered Successfully." }); //FIX THESE
         });
@@ -32,4 +33,19 @@ exports.signupFunction = (req, res) => {
 
 exports.signinFunction = (req, res) => {
     const { email, password } = req.body;
+
+    if(!email || !password) {
+        console.log("Lacking...");
+        return res.status(500).json({success: false});
+    }
+
+    conn.query("SELECT password FROM accounts WHERE email=?;", [email], (err, result) => {
+        if(err) throw err;
+        if(result.length == 0 || !bcrypt.compareSync(password, result[0].password)) {
+            return res.status(500).send({success: false});
+        }
+        else {
+            return res.status(200).send({success: true});
+        }
+    });
 }

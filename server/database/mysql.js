@@ -22,7 +22,7 @@ conn.connect((err) => {
                 if(err) throw err;
                 console.log("'accounts' Table Created");
 
-                conn.query("CREATE TABLE IF NOT EXISTS colors (color_id INT AUTO_INCREMENT PRIMARY KEY, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, account_id INT, FOREIGN KEY (account_id) REFERENCES accounts(account_id));", (err) => {
+                conn.query("CREATE TABLE IF NOT EXISTS colors (color_id INT AUTO_INCREMENT PRIMARY KEY, color_code VARCHAR(255) NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, account_id INT, FOREIGN KEY (account_id) REFERENCES accounts(account_id));", (err) => {
                     if(err) throw err;
                     console.log("'colors' Table Created");
 
