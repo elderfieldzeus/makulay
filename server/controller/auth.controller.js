@@ -39,13 +39,23 @@ exports.signinFunction = (req, res) => {
         return res.status(500).json({success: false});
     }
 
-    conn.query("SELECT password FROM accounts WHERE email=?;", [email], (err, result) => {
+    conn.query("SELECT * FROM accounts WHERE email=?;", [email], (err, result) => {
         if(err) throw err;
+
         if(result.length == 0 || !bcrypt.compareSync(password, result[0].password)) {
             return res.status(500).send({success: false});
         }
         else {
-            return res.status(200).send({success: true});
+            const { account_id, name } = result[0];
+            req.session.account_id = account_id;
+            return res.status(200).send({success: true, account_id, name});
         }
     });
+}
+
+exports.signoutFunction = (req, res, next) => {
+    req.session.destroy((err) => {
+        if(err) throw err;
+    });
+    next();
 }

@@ -17,6 +17,7 @@ document.getElementById("signin_form").addEventListener("submit", (e) => {
     .then((data) => {
         if(data.success) {
             alert("Logged in!");
+            window.location.href = "/home";
         }
         else {
             alert("Invalid Login Attempt");

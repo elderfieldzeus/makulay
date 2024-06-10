@@ -1,13 +1,14 @@
 const express = require("express");
 const path = require("path");
+const { signoutFunction } = require("../controller/auth.controller");
 
 const router = express.Router();
 
-router.get(["/", "/login"], (req, res) => {
+router.get(["/", "/login"], [signoutFunction], (req, res) => {
     res.sendFile(path.join(__dirname, "../../client/login.html"));
 });
 
-router.get("/register", (req, res) => {
+router.get("/register", [signoutFunction], (req, res) => {
     res.sendFile(path.join(__dirname, "../../client/signup.html"));
 });
 

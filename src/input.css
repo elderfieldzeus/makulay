@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .card {
+        @apply h-72 rounded-xl flex justify-center items-center hover:cursor-pointer;
+    }
+}

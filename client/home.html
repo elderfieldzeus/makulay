@@ -10,7 +10,7 @@
 </head>
 <body>
     <section class="w-full min-h-screen bg-gray-950 flex flex-col items-center">
-        <dialog id="add-color--dialog" class="w-full h-screen bg-black bg-opacity-60 z-10">
+        <dialog id="add-color--dialog" class="fixed w-full h-screen bg-black bg-opacity-60 z-10">
             <div class="w-full h-full flex items-center justify-center">
                 <div class="h-[14rem] w-[24rem] bg-white rounded-2xl p-7 text-gray-900 flex flex-col gap-5">
                     <h1 class="text-4xl font-semibold">Add a Color</h1>
@@ -30,16 +30,11 @@
 
 
         <header class="w-4/5 flex py-10">
-            <h1 id="username" class="text-4xl text-white pl-5">Zeus's Kulay de Paleta</h1>
+            <h1 id="username" class="text-4xl text-white pl-5"></h1>
         </header>
         <div id="color-container" class="w-4/5 p-5 grid grid-cols-[repeat(auto-fill,_13rem)] gap-10 justify-center lg:justify-start">
             <div id="add-color" class="card h-72 bg-white rounded-xl flex justify-center items-center hover:cursor-pointer">
-                <span class="add-color-svg bg-gray-200 size-[5rem]"></span>
-            </div>
-            <div class="card h-72 bg-pink-50 rounded-xl">
-            </div>
-            <div class="card h-72 bg-green-200 rounded-xl">
-                <!-- add plus logo -->
+                <span class="add-color-svg bg-gray-300 size-[5rem]"></span>
             </div>
         </div>
     </section>
