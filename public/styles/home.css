@@ -11,3 +11,34 @@ header {
     bottom: 1rem;
     left: 0;
 }
+
+#or--dialog {
+    position: relative;
+}
+
+#or--dialog::before,
+#or--dialog::after {
+    content: "";
+    position: absolute;
+    background-color: grey;
+    width: calc(50% - 15px);
+    height: 1px;
+    bottom: 42%;
+}
+
+#or--dialog::before {
+    left: 0;
+}
+
+#or--dialog::after {
+    right: 0;
+}
+
+
+/* for the color wheel button */
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+}

@@ -11,5 +11,9 @@ router.get("/register", (req, res) => {
     res.sendFile(path.join(__dirname, "../../client/signup.html"));
 });
 
+router.get("/home", (req, res) => {
+    res.sendFile(path.join(__dirname, "../../client/home.html"));
+})
+
 
 module.exports = router;

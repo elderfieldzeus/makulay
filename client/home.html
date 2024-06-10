@@ -12,9 +12,18 @@
     <section class="w-full min-h-screen bg-gray-950 flex flex-col items-center">
         <dialog id="add-color--dialog" class="w-full h-screen bg-black bg-opacity-60 z-10">
             <div class="w-full h-full flex items-center justify-center">
-                <div class="h-3/5 w-[26rem] bg-white rounded-xl p-8 text-gray-900">
+                <div class="h-[14rem] w-[24rem] bg-white rounded-2xl p-7 text-gray-900 flex flex-col gap-5">
                     <h1 class="text-4xl font-semibold">Add a Color</h1>
                     
+                    <form id="color-code--form" class="relative h-full w-full">
+                        <div id="color-wheel--div" class="border-2 border-gray-300 text-gray-900 flex justify-between items-center rounded-xl outline-none text-lg pl-3 h-[2.75rem] w-full self-center overflow-hidden">
+                            <input id="color-wheel-value" name="color-wheel-value" class="w-3/4 outline-none" placeholder="Enter a Color" required>
+                            <input id="color-wheel" type="color" class="hover:cursor-pointer w-16 h-full -ml-1 border-none" value="#000000">
+                        </div>
+
+                        <button type="submit" class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-blue-600 hover:bg-blue-700 text-white text-2xl rounded-full size-10 flex justify-center items-center"><span class="add-color-svg bg-white size-6"></span></button>
+                    </form>
+
                 </div>
             </div>
         </dialog>
@@ -25,7 +34,7 @@
         </header>
         <div id="color-container" class="w-4/5 p-5 grid grid-cols-[repeat(auto-fill,_13rem)] gap-10 justify-center lg:justify-start">
             <div id="add-color" class="card h-72 bg-white rounded-xl flex justify-center items-center hover:cursor-pointer">
-                <span class="add-color-svg"></span>
+                <span class="add-color-svg bg-gray-200 size-[5rem]"></span>
             </div>
             <div class="card h-72 bg-pink-50 rounded-xl">
             </div>

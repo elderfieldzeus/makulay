@@ -13,5 +13,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use("/", require("./routes"));
 app.use("/user", require("./routes/user.route"));
+app.use("/color", require("./routes/color.route"));
 
 app.listen(PORT, console.log(`Listening on port ${PORT}`));
