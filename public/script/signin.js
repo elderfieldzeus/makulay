@@ -6,12 +6,17 @@ document.getElementById("signin_form").addEventListener("submit", (e) => {
         password: document.getElementById("password").value,
     }
 
+    setSession(loginData);
+
+});
+
+function setSession(DATA) {
     fetch("/user/signin", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(loginData)
+        body: JSON.stringify(DATA)
     })
     .then((response) => response.json())
     .then((data) => {
@@ -22,4 +27,4 @@ document.getElementById("signin_form").addEventListener("submit", (e) => {
             alert("Invalid Login Attempt");
         }
     });
-});
+}

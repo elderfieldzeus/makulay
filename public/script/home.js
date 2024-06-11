@@ -93,7 +93,7 @@ signout.addEventListener("click", (e) => {
         }
     });
 
-})
+});
 
 add_color.addEventListener("click", () => {
     let randomColor = '#';
@@ -126,7 +126,21 @@ document.getElementById("color-code--form").addEventListener("submit", (e) => {
     e.preventDefault();
 
     const colorData = {
-        color: document.getElementById("color-wheel-value").value
+        color: document.getElementById("color-wheel-value").value.toUpperCase()
+    }
+
+    if(colorData.color[0] != '#') {
+        dialog.close();
+        return alert("Must start with a '#'!");
+    }
+
+    let i;
+
+    for(i = 1; i < 7 && hex.includes(colorData.color[i]); i++) {}
+
+    if(i < 7) {
+        dialog.close();
+        return alert("Must be Hexadecimal!");
     }
 
     fetch("/color/addColor", {

@@ -33,21 +33,25 @@ form.addEventListener('submit', async function(event) {
     });
 
     if(signup) {
-        fetch("/user/signin", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(userData)
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            if(data.success) {
-                window.location.href = "/home";
-            }
-            else {
-                alert("Invalid Login Attempt");
-            }
-        });
+        setSession(userData);
     }
 });
+
+function setSession(DATA) {
+    fetch("/user/signin", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(DATA)
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if(data.success) {
+            window.location.href = "/home";
+        }
+        else {
+            alert("Invalid Login Attempt");
+        }
+    });
+}
