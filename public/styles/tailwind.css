@@ -869,6 +869,16 @@ video {
   height: 5rem;
 }
 
+.size-0 {
+  width: 0px;
+  height: 0px;
+}
+
+.size-8 {
+  width: 2rem;
+  height: 2rem;
+}
+
 .h-72 {
   height: 18rem;
 }
@@ -2103,12 +2113,16 @@ video {
   padding: 4rem;
 }
 
-.p-5 {
-  padding: 1.25rem;
+.p-4 {
+  padding: 1rem;
 }
 
 .p-7 {
   padding: 1.75rem;
+}
+
+.p-3 {
+  padding: 0.75rem;
 }
 
 .px-3 {
@@ -2139,6 +2153,11 @@ video {
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 .pl-3 {

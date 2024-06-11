@@ -1,6 +1,6 @@
 const form = document.getElementById('signup_form');
 
-form.addEventListener('submit', function(event) {
+form.addEventListener('submit', async function(event) {
     event.preventDefault(); //preventDefault to avoid sending form right away
 
     const userData = {
@@ -10,7 +10,7 @@ form.addEventListener('submit', function(event) {
         cpassword: document.getElementById('cpassword').value
     }; //gather data to send to backend
 
-    fetch("/user/signup", { //send data through method POST
+    const signup = await fetch("/user/signup", { //send data through method POST
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -22,12 +22,32 @@ form.addEventListener('submit', function(event) {
         alert(data.message);
         if (!data.success) {
             window.location.href = "/register";
+            return false;
         } else {
-            window.location.href = "/";
+            return true;
         }
     })
     .catch(err => {
         console.log(err);
         alert("An error occurred. Please try again.");
     });
+
+    if(signup) {
+        fetch("/user/signin", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userData)
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            if(data.success) {
+                window.location.href = "/home";
+            }
+            else {
+                alert("Invalid Login Attempt");
+            }
+        });
+    }
 });

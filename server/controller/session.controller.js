@@ -16,3 +16,10 @@ exports.getSession = (req, res) => {
         res.send({success: true, account_id, name});
     });
 }
+
+exports.destroySession = (req, res, next) => {
+    req.session.destroy((err) => {
+        if(err) throw err;
+    });
+    next();
+}

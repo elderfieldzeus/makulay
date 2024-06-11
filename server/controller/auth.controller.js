@@ -42,6 +42,8 @@ exports.signinFunction = (req, res) => {
     conn.query("SELECT * FROM accounts WHERE email=?;", [email], (err, result) => {
         if(err) throw err;
 
+        console.log("meow");
+
         if(result.length == 0 || !bcrypt.compareSync(password, result[0].password)) {
             return res.status(500).send({success: false});
         }
@@ -53,9 +55,11 @@ exports.signinFunction = (req, res) => {
     });
 }
 
-exports.signoutFunction = (req, res, next) => {
+exports.signoutFunction = (req, res) => {
     req.session.destroy((err) => {
-        if(err) throw err;
-    });
-    next();
+        if(err) {
+            return res.send({success: false});
+        }
+        res.send({success: true});
+    })
 }

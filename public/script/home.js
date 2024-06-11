@@ -3,6 +3,7 @@ const color_value = document.getElementById("color-wheel-value");
 const color_wheel = document.getElementById("color-wheel");
 const hex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
 const dialog = document.getElementById("add-color--dialog");
+const signout = document.getElementById("signout")
 
 document.addEventListener("DOMContentLoaded", async () => {
     const color_container = document.getElementById("color-container");
@@ -31,7 +32,6 @@ async function fetchSession(session_id) {
     .then(response => response.json())
     .then(data => {
         if(!data.success) {
-            alert("Session Ended");
             window.location.href = "/login";
         }
         else {
@@ -60,7 +60,6 @@ function displayColors(color_container) {
         else {
             data.colors.forEach((color) => {
                 const card = document.createElement("div");
-
                 const details = document.createElement("h1");
 
                 details.textContent = color.color_code;
@@ -76,6 +75,25 @@ function displayColors(color_container) {
         }
     });
 }
+
+signout.addEventListener("click", (e) => {
+    fetch("user/signout", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(!data.success) {
+            alert("Unable to signout!");
+        }
+        else {
+            window.location.href = "/login"   
+        }
+    });
+
+})
 
 add_color.addEventListener("click", () => {
     let randomColor = '#';
@@ -118,10 +136,7 @@ document.getElementById("color-code--form").addEventListener("submit", (e) => {
     })
     .then(response => response.json())
     .then(data => {
-        if(data.success) {
-            alert("Added Color Successfully");
-        }
-        else {
+        if(!data.success) {
             alert("Failed to add Color to DB");
         }
     });
