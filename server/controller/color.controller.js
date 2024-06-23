@@ -43,3 +43,18 @@ exports.getColors = (req, res) => {
         res.send({success: true, colors, isEmpty});
     });
 }
+
+exports.deleteColor = (req, res) => {
+    const { account_id } = req.session;
+    const { color_id } = req.body;
+
+    if(!account_id || !color_id) {
+        return res.send({success: false});
+    }
+
+    conn.query("DELETE FROM colors WHERE account_id=? AND color_id=?", [account_id, color_id], (err, result) => {
+        if(err) res.send({success: false});
+
+        return res.send({success: true});
+    });
+}

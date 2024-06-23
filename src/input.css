@@ -4,6 +4,6 @@
 
 @layer components {
     .card {
-        @apply h-72 rounded-xl flex justify-center items-center hover:cursor-pointer;
+        @apply h-72 rounded-xl flex justify-center items-center hover:cursor-pointer relative;
     }
 }
