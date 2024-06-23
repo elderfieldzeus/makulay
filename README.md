@@ -1,5 +1,5 @@
 # makulay
-A Nodejs project for inputting, storing, and displaying colors that users would like to remember.
+A personal color cataloging website that lets users log in to store and display their favorite colors, ensuring they never forget a shade that inspires them. Made with NodeJS, TailwindCSS, HTML.
 
 ### Notes:
 - body-parser is used to parse json to make it available in the req.body. Without this req.body is undefined.
